@@ -1,0 +1,23 @@
+.res_menus{
+    max-width: 70vw;
+    margin: auto;
+    margin-top: 20px;
+}
+.addbutton{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+.addmenu:hover{
+    border: 1px solid var(--green);
+}
+.menublock{
+    max-width: 80vw;
+    margin: auto;
+}
+
+/* Order Card CSS */
+.ordercard{
+    margin-top: 50px;
+}

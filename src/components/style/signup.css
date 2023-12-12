@@ -1,0 +1,282 @@
+.signup {
+    margin: auto;
+    display: block;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px -2px #737981;
+    background: transparent;
+    background-color: rgba(0,0,0,0.02);
+    width: 500px;
+}
+
+.signup_main{
+    display: flex;
+    height: 88vh;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 3fr 2.5fr;
+    display: grid;
+    column-gap: 30px;
+    width: 100%;
+    border-radius: 10px;
+}
+/*  */
+
+.form-content{
+    margin-bottom: 8px;
+}
+
+/*  */
+.signup_option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 7px;
+}
+
+.contai{
+    max-width: 430px;
+    margin: auto;
+    display: block;
+}
+.contai img {
+    width: 100%;
+    filter: drop-shadow(0 0 0.75rem rgb(174, 168, 169));
+    animation: up-down 1.7s ease-in-out infinite alternate-reverse both;
+}
+
+.signup_ {
+    width: 60%;
+    text-align: center;
+}
+
+.option_img {
+    height: 150px;
+    border: 1px solid grey;
+    margin: 0px 5px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* text-align: center; */
+}
+
+.option_img img {
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 10px;
+}
+
+.option_heading {
+    border: 1px solid rgba(0, 0, 0, 0.66);
+    margin: 0px 5px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+    font-weight: 800;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.field {
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    border-radius: 6px;
+}
+
+.field input,
+.field button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+
+.field input {
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid#CACACA;
+}
+
+.contai img {
+    width: 100%;
+    filter: drop-shadow(0 0 0.75rem rgb(174, 168, 169));
+    animation: up-down 1.7s ease-in-out infinite alternate-reverse both;
+}
+
+.field input:focus {
+    border-bottom-width: 2px;
+}
+
+.option_heading:hover {
+    background-color: aliceblue;
+    border: 2px dotted var(--dark);
+    cursor: pointer;
+}
+
+.form-content {
+    margin-top: 10px;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.form-content::-webkit-scrollbar{
+    width: 10px;
+}
+
+.form-content::-webkit-scrollbar-thumb{
+    box-shadow: inset 0 0 10px 10px rgb(150, 140, 140);
+    border: solid 3px transparent;
+    border-radius: 20px;
+}
+
+#file-upload-button{
+    padding: 20px;
+}
+/* Media Queries */
+
+@media screen and (max-width: 776px) {
+    .signup_ {
+        width: 50%;
+    }
+
+    .option_heading {
+        border-top-left-radius: 10px;
+        letter-spacing: 0px;
+    }
+
+    .option_img {
+        display: none;
+        height: 150px;
+    }
+    .signup{
+        max-width: 500px;
+    }
+    .signup{
+        max-width: 84vh;
+        padding: 20px;
+    }
+    .form-content{
+        margin: 0;
+    }
+    .contai{
+        max-width: 250px;
+    }
+}
+/*  */
+input[type="file"]{
+    display:none;
+}
+#file-label{
+    display: flex;
+    background-color: var(--green);
+    padding: 7px;
+    border-radius: 7px;
+    border: 1px solid grey;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    font-weight: 500;
+}
+#file-label:hover{
+    background-color: var(--light);
+    cursor: pointer;
+    border: 1px solid black;
+    padding-left: 40px;
+}
+
+
+/*  */
+@media screen and (max-width: 528px) {
+    .signup{
+        max-width: 85vw;
+        padding: 20px 10px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .option_heading {
+        letter-spacing: 0px;
+        font-size: 13px;
+    }
+    
+}
+
+
+/* new media query */
+
+@media screen and (max-width: 903px) {
+    .signup_main {
+        grid-template-columns: 1fr;
+        height: auto;
+        margin-bottom: 20px;
+        margin-top: 100px;
+    }
+    .signup_main {
+        margin: auto;
+        width: 85vw;
+    }
+}
+
+@media screen and (max-width: 404px) {
+    .contai{
+        max-width: 250px;
+    }
+
+}
+@media screen and (max-width: 528px) {
+    .signup{
+        max-width: 90%;
+        padding: 20px 10px;
+    }
+}
+@media screen and (max-width: 540px) {
+    .signup {
+        padding: 10px 50px;
+        max-width: 400px;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 650px) {
+    .signup {
+        padding: 10px 50px;
+        max-width: 400px;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .signup_main {
+        column-gap: 15px;
+    }
+    .contai{
+        width: 330px;
+    }
+    .signup {
+        width: 360px;
+        padding: 20px;
+    }
+}
+@media screen and (max-width: 371px) {
+    .signup {
+        width: 260px;
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 340px) {
+    .restaurentlogo, .userlogo {
+        display: none;
+        text-align: center;
+    }
+    .restaurent, .user{
+        justify-content: center;
+    }
+}
