@@ -1,3 +1,21 @@
 popUp
 Coupon
 delete previs order
+
+
+city 
+area
+chefe
+item (restaurant)
+user age
+user gender
+time date month year
+veg, non-veg
+
+
+
+
+
+res-->
+veg nonveg
+chefe

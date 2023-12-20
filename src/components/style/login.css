@@ -69,6 +69,11 @@ header {
 
 .field input {
     outline: none;
+    border: 1px solid#CACACA;
+}
+
+.med-input {
+    outline: none;
     padding: 0 15px;
     border: 1px solid#CACACA;
 }
@@ -96,6 +101,12 @@ header {
 .form-link a {
     font-size: 14px;
     font-weight: 400;
+    color: #232836;
+}
+
+.medcls{
+    font-size: 14px;
+    font-weight: 800;
     color: #232836;
 }
 
@@ -153,12 +164,27 @@ header {
     border-radius: 10px;
 }
 
+.mediator {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    height: 3rem;
+    padding: 0px 10px;
+    align-items: center;
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
+}
+
 .user:hover {
     background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(255, 255, 255, 1) 0%, var(--light) 100%);
 }
 
 .restaurent:hover {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, var(--light) 0%, rgba(255, 255, 255, 0.4638135039171919) 100%);
+}
+.mediator:hover {
     background: rgb(255, 255, 255);
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, var(--light) 0%, rgba(255, 255, 255, 0.4638135039171919) 100%);
 }

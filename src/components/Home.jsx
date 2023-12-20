@@ -85,7 +85,7 @@ function Home({ setNavType }) {
                 </button>
             </div>
 
-            <h1 style={{ textAlign: "center", margin: "50px 0px", textDecoration: "underline" }}>Restaurants</h1>
+            <h1 style={{ textAlign: "center", margin: "50px 0px", textDecoration: "underline" }} className=' text-xl'>Restaurants</h1>
             
             {
                 filteredRes.length>0?

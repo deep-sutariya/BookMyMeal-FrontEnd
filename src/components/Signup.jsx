@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import res_img from "../assets/RestaurantLI.jpg";
 import user_img from "../assets/CustomerLI.jpg";
 import signup from '../assets/Signup.png'
+import userlogo from '../assets/userlogo.jfif';
 var validator = require("email-validator");
 
 function Signup({ setNavType }) {
@@ -69,9 +70,40 @@ function Signup({ setNavType }) {
       } else if (ups !== ucps) {
         errmsg.innerText = "***Passwords are not maching!***";
       }
-
       errmsg.style.color = "red";
-    } else {
+    }
+    else if(option === "mediator"){
+      let ups = user.upass;
+      let ucps = user.ucpass;
+      let uemail = user.uemail;
+
+      let isvalid = validator.validate(uemail);
+
+      if (ups === ucps && isvalid) {
+        try {
+          const data = await axios.post(`${process.env.REACT_APP_HOST_IP}/mediatorsignup`, {
+            memail: user.uemail,
+            mname: user.uname,
+            mpass: user.upass,
+          });
+          if (data.status === 202) {
+            errmsg.innerText = `${data?.data?.message}`;
+          } else {
+            console.log(data.data?.data);
+            navigate("/login");
+            alert(`${data.data.message}`);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (!isvalid) {
+        errmsg.innerText = "***Not Valid Email!***";
+      } else if (ups !== ucps) {
+        errmsg.innerText = "***Passwords are not maching!***";
+      }
+      errmsg.style.color = "red";
+    }
+    else {
       const valid = validator.validate(user.remail);
       if (!user.rname) {
         errmsg.innerText = "***Enter Restaurant Name***";
@@ -133,12 +165,12 @@ function Signup({ setNavType }) {
     e.preventDefault();
     name = e.target.name;
     value = e.target.value;
-    if(name === "image"){
-        document.getElementById("nameoffile").innerText = e.target.files[0].name; 
-        document.getElementById("label").innerText = ""; 
-        setuser({ ...user, [name]: e.target.files[0] });
-    }else
-        setuser({ ...user, [name]: value });
+    if (name === "image") {
+      document.getElementById("nameoffile").innerText = e.target.files[0].name;
+      document.getElementById("label").innerText = "";
+      setuser({ ...user, [name]: e.target.files[0] });
+    } else
+      setuser({ ...user, [name]: value });
   }
 
   const UploadImage = async () => {
@@ -154,12 +186,15 @@ function Signup({ setNavType }) {
       });
     return url;
   };
-  
+
   const handleResOption = () => {
     setOption("restaurant");
     document.getElementById("user").style.backgroundColor = "white";
     document.getElementById("user").style.border = "1px solid black";
     document.getElementById("user").style.boxShadow = "none";
+    document.getElementById("mediator").style.backgroundColor = "white";
+    document.getElementById("mediator").style.border = "1px solid black";
+    document.getElementById("mediator").style.boxShadow = "none";
     document.getElementById("restaurant").style.backgroundColor =
       "var(--light)";
     document.getElementById("restaurant").style.border = "1px solid black";
@@ -171,24 +206,28 @@ function Signup({ setNavType }) {
     document.getElementById("restaurant").style.boxShadow = "none";
     document.getElementById("restaurant").style.backgroundColor = "white";
     document.getElementById("restaurant").style.border = "1px solid black";
+    document.getElementById("mediator").style.backgroundColor = "white";
+    document.getElementById("mediator").style.border = "1px solid black";
+    document.getElementById("mediator").style.boxShadow = "none";
     document.getElementById("user").style.backgroundColor = "var(--light)";
     document.getElementById("user").style.border = "1px solid black";
     document.getElementById("user").style.boxShadow =
       "0 0 20px 0px var(--light)";
   };
-  // converting the file to the Base64 format
-//   function convertToBase64(file) {
-//     return new Promise((resolve, reject) => {
-//       const fileReader = new FileReader();
-//       fileReader.readAsDataURL(file);
-//       fileReader.onload = () => {
-//         resolve(fileReader.result);
-//       };
-//       fileReader.onerror = (error) => {
-//         reject(error);
-//       };
-//     });
-//   }
+  const handleMediatorOption = () => {
+    setOption("mediator");
+    document.getElementById("restaurant").style.boxShadow = "none";
+    document.getElementById("restaurant").style.backgroundColor = "white";
+    document.getElementById("restaurant").style.border = "1px solid black";
+    document.getElementById("user").style.backgroundColor = "white";
+    document.getElementById("user").style.border = "1px solid black";
+    document.getElementById("user").style.boxShadow = "none";
+    document.getElementById("mediator").style.backgroundColor = "var(--light)";
+    document.getElementById("mediator").style.border = "1px solid black";
+    document.getElementById("mediator").style.boxShadow =
+      "0 0 20px 0px var(--light)";
+  };
+  
 
   return (
     <>
@@ -198,39 +237,36 @@ function Signup({ setNavType }) {
         </div>
 
         <div className="signup">
-          <div className="signup_option">
-            <div className="signup_ login">
-              <div className="inner_res">
-                <div className="option_img">
-                  <img src={res_img} alt="restaurent_option img" />
+
+          <div>
+            <div className="signup_option">
+              <div className="signup_ login">
+                <div className="inner_res">
+                  <div className="option_img">
+                    <img src={res_img} alt="restaurent_option img" />
+                  </div>
+                  <div className="option_heading" onClick={handleResOption} id="restaurant">RESTAURANT</div>
                 </div>
-                <div
-                  className="option_heading"
-                  onClick={handleResOption}
-                  id="restaurant"
-                >
-                  RESTAURANT
+              </div>
+              <div className="signup_">
+                <div className="inner_user">
+                  <div className="option_img">
+                    <img src={user_img} alt="restaurent_option img" />
+                  </div>
+                  <div className="option_heading" onClick={handleUserOption} id="user">USER</div>
                 </div>
               </div>
             </div>
-            <div className="signup_">
-              <div className="inner_user">
-                <div className="option_img">
-                  <img src={user_img} alt="restaurent_option img" />
-                </div>
-                <div
-                  className="option_heading"
-                  onClick={handleUserOption}
-                  id="user"
-                >
-                  USER
-                </div>
+
+            <div className="mediator gap-x-5" id="mediator" onClick={handleMediatorOption}>
+                <img className="userlogo" src={userlogo} alt="reslogo" />
+                <span className="medcls font-bold">Mediator</span>
               </div>
-            </div>
           </div>
+
           <div className="form-content">
             <form>
-              {option === "user" ? (
+              {option === "user" || option === "mediator" ? (
                 <>
                   <div className="field input-field">
                     <input
@@ -251,8 +287,10 @@ function Signup({ setNavType }) {
                       name="uemail"
                       className="input"
                     />
-                    </div>
-                  <div className="field input-field">
+                  </div>
+                  {
+                    option==="user" ?
+                    <div className="field input-field">
                     <input
                       type="text"
                       placeholder="Phone No"
@@ -260,8 +298,10 @@ function Signup({ setNavType }) {
                       value={user.uphone}
                       name="uphone"
                       className="input"
-                    />
+                      />
                   </div>
+                  :<></>
+                  }
                   <div className="field input-field">
                     <input
                       type="password"

@@ -19,8 +19,12 @@ function Navbar(props) {
   const { setCartItem, cartItem } = useContext(TrayContex);
   const [first, setfirst] = useState({});
 
+  useEffect(()=>{
+    console.log(loginuser);
+  }, [loginuser])
 
   var token, decodedToken;
+  
   async function getData(type) {
     token = sessionStorage.getItem("token");
     decodedToken = jwt_decode(token);
@@ -32,7 +36,14 @@ function Navbar(props) {
         uemail: decodedToken.email,
         upass: decodedToken.pass
       });
-    } else {
+    } 
+    else if(type === "mediator"){
+      data = await axios.post(`${process.env.REACT_APP_HOST_IP}/mediatorlogin`, {
+        uemail: decodedToken.email,
+        upass: decodedToken.pass
+      });
+    }
+    else {
       data = await axios.post(`${process.env.REACT_APP_HOST_IP}/restaurentlogin`, {
         uemail: decodedToken.email,
         upass: decodedToken.pass
@@ -53,7 +64,7 @@ function Navbar(props) {
     } else {
       setloginuser(first?.data?.data);
     }
-    console.log(first?.data?.data);
+    // console.log(first?.data?.data);
   }, [first])
 
   var links = document.querySelectorAll('.navlinkss');
@@ -116,6 +127,29 @@ function Navbar(props) {
                       <li><Link className="navlinkss" to='../login'>Login</Link></li>
                     </>
                 }
+              </>
+
+              :
+
+            sessionStorage.getItem("type") == "mediator" ?
+
+              <>
+                <li><Link className="navlinkss active" to="../mediatorhome/additem" >Add Item</Link></li>
+                <li><Link className="navlinkss" to="../mediatorhome/restaurant" >Restaurants</Link></li>
+                {
+                  (loginuser) ? <div className="dropdown">
+                    <button className="dropbtn">{loginuser?.mname}</button>
+                    <div className="dropdown-content">
+                      <Link to="/" onClick={finalCall}>Log Out</Link>
+                    </div>
+                  </div>
+                    :
+                    <>
+                      <li><Link className="navlinkss" to="../signup" >Signup</Link></li>
+                      <li><Link className="navlinkss" to='../login'>Login</Link></li>
+                    </>
+                }
+
               </>
 
               :

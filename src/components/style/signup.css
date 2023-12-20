@@ -1,7 +1,7 @@
 .signup {
     margin: auto;
     display: block;
-    padding: 30px;
+    padding: 20px 30px;
     border-radius: 10px;
     box-shadow: 0 0 20px -2px #737981;
     background: transparent;
@@ -46,12 +46,12 @@
 }
 
 .signup_ {
-    width: 60%;
+    width: 40%;
     text-align: center;
 }
 
 .option_img {
-    height: 150px;
+    height: 100px;
     border: 1px solid grey;
     margin: 0px 5px;
     border-top-right-radius: 10px;
@@ -223,6 +223,9 @@ input[type="file"]{
     .signup_main {
         margin: auto;
         width: 85vw;
+    }
+    .signup_{
+        width: 100%;
     }
 }
 

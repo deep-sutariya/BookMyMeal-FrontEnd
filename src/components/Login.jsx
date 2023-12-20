@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import "./style/login.css";
-import { Link, useNavigate ,useLocation} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import restaurentlogo from '../assets/restaurentlogo.jfif';
 import userlogo from '../assets/userlogo.jfif';
 import login from '../assets/login.svg'
@@ -27,12 +27,20 @@ function Login({ setNavType }) {
   const handleRestaurent = () => {
     setLoginOption("restaurent");
     document.getElementById('use').style.backgroundColor = "white";
+    document.getElementById('mediator').style.backgroundColor = "white";
     document.getElementById('res').style.backgroundColor = "var(--light)";
   }
   const handleUser = () => {
     setLoginOption("user");
     document.getElementById('res').style.backgroundColor = "white";
+    document.getElementById('mediator').style.backgroundColor = "white";
     document.getElementById('use').style.backgroundColor = "var(--light)";
+  }
+  const handleMediator = () => {
+    setLoginOption("mediator");
+    document.getElementById('res').style.backgroundColor = "white";
+    document.getElementById('use').style.backgroundColor = "white";
+    document.getElementById('mediator').style.backgroundColor = "var(--light)";
   }
 
   let name, value;
@@ -57,24 +65,30 @@ function Login({ setNavType }) {
           upass: user.upass,
         });
 
-        sessionStorage.setItem("token",data?.data?.cookie);
-        sessionStorage.setItem("type",data?.data?.type);
-        
+        sessionStorage.setItem("token", data?.data?.cookie);
+        sessionStorage.setItem("type", data?.data?.type);
+
         if (data.status === 200) {
 
-          
           if (loginoption === "user") { // navigate to the user page 
             setloginuser(data?.data?.data);
             setloginrestaurant(null);
             setNavType("user");
             alert(`${data.data.message}`);
-            if(location?.state?.fromCart){
+            if (location?.state?.fromCart) {
               navigate("/restaurentmenu")
-            }else{
+            } else {
               navigate("/")
             }
           }
-          else { // navigate to the restaurent page 
+          else if (loginoption === "mediator") {
+            setloginuser(data?.data?.data);
+            setloginrestaurant(null);
+            setNavType("mediator");
+            alert(`${data?.data?.message}`);
+            navigate("/mediatorhome");
+          }
+          else {
             setloginrestaurant(data?.data?.data);
             setloginuser(null)
             setNavType("restaurent");
@@ -103,16 +117,26 @@ function Login({ setNavType }) {
         <div className="form grid_container login">
           <div className="form-content-login">
             <header>Login</header>
-            <div className="option">
-              <div className="restaurent" id="res" onClick={handleRestaurent}>
-                <img className="restaurentlogo" src={restaurentlogo} alt="reslogo" />
-                <span>Restaurant</span>
+
+            <div className="flex flex-col gap-y-3">
+              <div className="option">
+                <div className="restaurent" id="res" onClick={handleRestaurent}>
+                  <img className="restaurentlogo" src={restaurentlogo} alt="reslogo" />
+                  <span>Restaurant</span>
+                </div>
+                <div className="user" id="use" onClick={handleUser}>
+                  <img className="userlogo" src={userlogo} alt="userlogo" />
+                  <span>User</span>
+                </div>
               </div>
-              <div className="user" id="use" onClick={handleUser}>
-                <img className="userlogo" src={userlogo} alt="userlogo" />
-                <span>User</span>
+
+              <div className="mediator gap-x-5" id="mediator" onClick={handleMediator}>
+                <img className="userlogo" src={userlogo} alt="reslogo" />
+                <span className="medcls font-bold">Mediator</span>
               </div>
+
             </div>
+
             <form onSubmit={loginchecker} className="inside_form">
               <div className="field input-field">
                 <input type="email" placeholder="Email" className="input" name="uemail" value={user.uemail} onChange={change} required />

@@ -16,6 +16,8 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Reservations from './components/Reservations';
 import Forgot_Pass from './components/Forgot_Pass';
+import MediatorForm from './components/MediatorForm';
+import MediatorHome from './components/MediatorHome';
 function App() {
   const [menu,setMenu] = useState({});
   const [navtype, setNavType] = useState("user");
@@ -41,6 +43,12 @@ function App() {
                     <Route path='' element={<Profile setNavType={setNavType}/>} />
                     <Route path='menus' element={<AllMenu menu={menu} setNavType={setNavType}/>} />
                     <Route path='restaurantorders' element={<RestaurantOrders setNavType={setNavType} />} />
+                  </Route>
+
+                  <Route path="mediatorhome" element={<MediatorHome setNavType={ setNavType}/>}>
+                    <Route path='additem' element={<MediatorForm setNavType={setNavType}/>} />
+                    <Route path='restaurant' />
+              
                   </Route>
                 </Route>
 
