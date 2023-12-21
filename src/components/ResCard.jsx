@@ -6,25 +6,30 @@ import { useContext } from "react";
 import axios from "axios";
 import { LoginDetails } from "../contex/Logincontex";
 const Cards = (props) => {
-    const { loginuser } = useContext(LoginDetails);
+  const resid = props.id
+  const { loginuser } = useContext(LoginDetails);
   const {
     setSelectedRestaurantMenu,
     setSelectedRestaurant,
     SelectedRestaurant,
     SelectedRestaurantMenu,
   } = useContext(UserSelectedResContex);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = await axios.post(`${process.env.REACT_APP_HOST_IP}/getorders`, {
+    const data = await axios.post(`${process.env.REACT_APP_HOST_IP}/requestrestaurant`, {
+      mname: loginuser?.mname,
       memail: loginuser?.memail,
+      resid
     });
     alert(data?.data?.message);
-    const d = data.data.data;
+    const d = data.data?.data;
     if (data?.status === 200) {
         console.log('Data ' , d);
-        navigate("/mediator/analysis");
+        navigate("/mediatorhome/dashboard");
     }
   };
+
   const navigate = useNavigate();
 
 //   const toMenuPage = async (e) => {

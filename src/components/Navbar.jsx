@@ -20,8 +20,8 @@ function Navbar(props) {
   const [first, setfirst] = useState({});
 
   useEffect(()=>{
-    console.log(loginuser);
-  }, [loginuser])
+    console.log(loginrestaurant);
+  }, [loginrestaurant])
 
   var token, decodedToken;
   
@@ -109,6 +109,7 @@ function Navbar(props) {
                 <li><Link className='navlinkss' to="restaurenthome/menus" >Menu</Link></li>
                 <li><Link className='navlinkss' to="restaurenthome/restaurantorders" >Orders</Link></li>
                 <li><Link className="navlinkss" to="../reservation" >Reservations</Link></li>
+                <li><Link className="navlinkss" to="restaurenthome/mediator" >Mediator</Link></li>
 
                 {
 
