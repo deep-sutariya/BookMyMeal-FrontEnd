@@ -19,7 +19,6 @@ import Forgot_Pass from './components/Forgot_Pass';
 import MediatorForm from './components/MediatorForm';
 import MediatorHome from './components/MediatorHome';
 import MediatorRestaurants from './components/MediatorRestaurants';
-import Chart from './components/Chart';
 import DashBoard from './components/DashBoard';
 function App() {
   const [menu,setMenu] = useState({});
