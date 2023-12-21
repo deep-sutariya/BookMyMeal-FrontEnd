@@ -11,7 +11,7 @@ function Home({ setNavType }) {
 
     useEffect(() => {
         setNavType("user");
-    }, [])
+    }, []);
 
     const [restaurents, setRestaurents] = useState([]);
     const [filteredRes, setfilteredRes] = useState([]);
