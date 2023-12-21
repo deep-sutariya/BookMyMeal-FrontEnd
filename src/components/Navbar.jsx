@@ -136,6 +136,7 @@ function Navbar(props) {
               <>
                 <li><Link className="navlinkss active" to="../mediatorhome/additem" >Add Item</Link></li>
                 <li><Link className="navlinkss" to="../mediatorhome/restaurant" >Restaurants</Link></li>
+                <li><Link className="navlinkss" to="../mediatorhome/dashboard" >Dashboard</Link></li>
                 {
                   (loginuser) ? <div className="dropdown">
                     <button className="dropbtn">{loginuser?.mname}</button>

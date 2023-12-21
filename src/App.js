@@ -20,6 +20,7 @@ import MediatorForm from './components/MediatorForm';
 import MediatorHome from './components/MediatorHome';
 import MediatorRestaurants from './components/MediatorRestaurants';
 import Chart from './components/Chart';
+import DashBoard from './components/DashBoard';
 function App() {
   const [menu,setMenu] = useState({});
   const [navtype, setNavType] = useState("user");
@@ -95,8 +96,8 @@ function App() {
                       element={<MediatorRestaurants setNavType={setNavType} />}
                     />
                     <Route
-                      path="analysis"
-                      element={<Chart setNavType={setNavType} />}
+                      path="dashboard"
+                      element={<DashBoard setNavType={setNavType} />}
                     />
                   </Route>
                 </Route>
