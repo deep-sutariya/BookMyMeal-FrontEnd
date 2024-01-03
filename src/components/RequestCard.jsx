@@ -1,20 +1,26 @@
 import React from 'react';
 import axios from 'axios'
-
+import { toast } from 'react-toastify';
 const RequestCard = ({ memail, mname, resid }) => {
 
     const handleaccept = async () => {
         const data = await axios.post(`${process.env.REACT_APP_HOST_IP}/acceptrequest`, {
             memail, mname, resid
         });
-        alert(data?.data?.message);
+
+        toast.success(data.data.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
     }
 
     const handledecline = async () => {
         const data = await axios.post(`${process.env.REACT_APP_HOST_IP}/declinerequest`, {
             memail, mname, resid
         });
-        alert(data?.data?.message);
+        toast.error(data.data.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+
     }
 
     return (

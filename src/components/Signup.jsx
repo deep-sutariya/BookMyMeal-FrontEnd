@@ -7,6 +7,7 @@ import res_img from "../assets/RestaurantLI.jpg";
 import user_img from "../assets/CustomerLI.jpg";
 import signup from '../assets/Signup.png'
 import userlogo from '../assets/userlogo.jfif';
+import { toast } from "react-toastify";
 var validator = require("email-validator");
 
 function Signup({ setNavType }) {
@@ -58,7 +59,9 @@ function Signup({ setNavType }) {
             errmsg.innerText = `${data.data.message}`;
           } else {
             navigate("/login");
-            alert(`${data.data.message}`);
+            toast.warn(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
           }
         } catch (error) {
           console.log(error);
@@ -91,7 +94,9 @@ function Signup({ setNavType }) {
           } else {
             console.log(data.data?.data);
             navigate("/login");
-            alert(`${data.data.message}`);
+            toast.warn(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
           }
         } catch (error) {
           console.log(error);
@@ -139,7 +144,9 @@ function Signup({ setNavType }) {
             errmsg.innerText = `***${data.data.message}***`;
           } else {
             navigate("/login");
-            alert(`${data.data.message}`);
+            toast.warn(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
           }
         } catch (error) {
           console.log(error);

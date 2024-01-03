@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { LoginDetails } from "../contex/Logincontex";
 import { useContext } from "react";
 import "../components/style/profile.css";
+import { toast } from "react-toastify";
 const Profile = () => {
   const [resData, setResData] = useState({});
   const [resInfo, setResInfo] = useState({});
@@ -104,12 +105,14 @@ const Profile = () => {
     console.log(data);
     if (data.status === 200) {
       console.log("200");
-      console.log("200");
-      setResInfo(data.data.data);
-      alert(data.data.message);
+      toast.success(data.data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     } else {
       console.log("400");
-      alert(data.data.message);
+      toast.error(data.data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
     setFlag(!flag);
     setSubmiting(false);

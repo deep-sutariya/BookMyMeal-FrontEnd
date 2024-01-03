@@ -6,7 +6,7 @@ import { TrayContex } from '../contex/tray_contex'
 import { LoginDetails } from '../contex/Logincontex';
 import { UserSelectedResContex } from '../contex/UserSelectedRestaurant';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
 const Popup = (props) => {
     const navigate = useNavigate();
     const { cartItem, getTotalCardAmount } = useContext(TrayContex);
@@ -51,7 +51,9 @@ const Popup = (props) => {
             });
             navigate("/orders");
         }else{
-            alert("First login Plz !!!!");
+            toast.warn("First login Plz !!!!", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
             navigate("/login",{
                 state: {
                     fromCart: true

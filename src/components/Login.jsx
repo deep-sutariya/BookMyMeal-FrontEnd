@@ -6,7 +6,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import restaurentlogo from '../assets/restaurentlogo.jfif';
 import userlogo from '../assets/userlogo.jfif';
 import login from '../assets/login.svg'
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { LoginDetails } from "../contex/Logincontex";
 import { useContext } from "react";
 
@@ -74,7 +75,9 @@ function Login({ setNavType }) {
             setloginuser(data?.data?.data);
             setloginrestaurant(null);
             setNavType("user");
-            alert(`${data.data.message}`);
+            toast.success(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
             if (location?.state?.fromCart) {
               navigate("/restaurentmenu")
             } else {
@@ -85,14 +88,18 @@ function Login({ setNavType }) {
             setloginuser(data?.data?.data);
             setloginrestaurant(null);
             setNavType("mediator");
-            alert(`${data?.data?.message}`);
+            toast.success(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
             navigate("/mediatorhome");
           }
           else {
             setloginrestaurant(data?.data?.data);
             setloginuser(null)
             setNavType("restaurent");
-            alert(`${data.data.message}`);
+            toast.success(data.data.message, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
             navigate("/restaurenthome");
           }
 

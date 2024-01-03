@@ -5,7 +5,7 @@ import Cards from '../components/Cards';
 import BounceLoader from "react-spinners/BounceLoader";
 import '../components/style/home.css'
 import "../components/style/cards.css"
-
+import { toast } from 'react-toastify';
 
 function Home({ setNavType }) {
 
@@ -51,13 +51,21 @@ function Home({ setNavType }) {
             else {
                 document.getElementById('searchid').value = "";
                 setfilteredRes([]);
-                alert('Our Services for the given PinCode will start soon');
+                toast.warn(
+                  "Our Services for the given PinCode will start soon",
+                  {
+                    position: toast.POSITION.TOP_RIGHT,
+                  }
+                );
             }
 
         } else {
             document.getElementById('searchid').value = "";
             setfilteredRes([]);
-            alert('Enter Valid Pincode');
+            toast.error("Enter Valid Pincode", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            
         }
     }
 

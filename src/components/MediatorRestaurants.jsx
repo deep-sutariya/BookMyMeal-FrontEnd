@@ -10,7 +10,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { CategoryScale } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
-
+import { toast } from "react-toastify";
 // const MediatorRestaurants = () => {
 //     let [loading, setLoading] = useState(true);
 //     const { loginuser } = useContext(LoginDetails);
@@ -90,12 +90,16 @@ const MediatorRestaurants = () => {
       } else {
         document.getElementById("searchid").value = "";
         setfilteredRes([]);
-        alert("Our Services for the given PinCode will start soon");
+        toast.warn("Our Services for the given PinCode will start soon", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }
     } else {
       document.getElementById("searchid").value = "";
       setfilteredRes([]);
-      alert("Enter Valid Pincode");
+      toast.warn("Enter Valid Pincode", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 

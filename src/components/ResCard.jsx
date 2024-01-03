@@ -5,6 +5,7 @@ import { UserSelectedResContex } from "../contex/UserSelectedRestaurant";
 import { useContext } from "react";
 import axios from "axios";
 import { LoginDetails } from "../contex/Logincontex";
+import {toast } from 'react-toastify';
 const Cards = (props) => {
   const resid = props.id
   const { loginuser } = useContext(LoginDetails);
@@ -22,7 +23,9 @@ const Cards = (props) => {
       memail: loginuser?.memail,
       resid
     });
-    alert(data?.data?.message);
+    toast.warn(data.data.message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
     const d = data.data?.data;
     if (data?.status === 200) {
         console.log('Data ' , d);

@@ -21,6 +21,7 @@ import MediatorHome from './components/MediatorHome';
 import MediatorRestaurants from './components/MediatorRestaurants';
 import DashBoard from './components/DashBoard';
 import MediatorPage from './components/MediatorPage';
+import { ToastContainer } from "react-toastify";
 function App() {
   const [menu,setMenu] = useState({});
   const [navtype, setNavType] = useState("user");
@@ -110,6 +111,7 @@ function App() {
           </LoginDetailsProvider>
         </TrayContexProvider>
       </UserSelectedResContexProvider>
+      <ToastContainer />
     </>
   );
 }

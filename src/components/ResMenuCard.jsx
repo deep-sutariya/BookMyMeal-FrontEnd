@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import "../components/style/ResMenuCard.css";
 import { LoginDetails } from "../contex/Logincontex";
-
+import { toast } from "react-toastify";
 const ResMenuCard = ({
   id,
   name,
@@ -94,7 +94,9 @@ const ResMenuCard = ({
     });
     setOpenRemovePopup(false);
     setRestaurantMenu(data?.data?.data);
-    alert(data.data.message);
+    toast.success(data.data.message, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   return (

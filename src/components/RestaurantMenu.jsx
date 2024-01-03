@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { TrayContex } from "../contex/tray_contex";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-
+import { toast } from 'react-toastify';
 function RestaurantMenu() {
     const navigate = useNavigate();
   const {
@@ -70,7 +70,9 @@ function RestaurantMenu() {
       const noofpeople = e.target[0].value;
       const datetime = e.target[1].value;
       if(noofpeople === "" || datetime === ""){
-        alert("Invalid input Plz fill all the details");
+        toast.warn("Invalid input Plz fill all the details", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }else{
             const date = datetime.split("T")[0];
             const time = datetime.split("T")[1];
@@ -83,12 +85,16 @@ function RestaurantMenu() {
               resid: SelectedRestaurant._id,
               userid: loginuser._id
             });
-      
-            alert(`${data.data}`);
+            toast.warn(data.data, {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            
             setopen(!open);
       }
     } else {
-      alert("First login Plz !!!!");
+      toast.warn("First login Plz !!!!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       navigate("/login", {
         state: {
           fromCart: true,

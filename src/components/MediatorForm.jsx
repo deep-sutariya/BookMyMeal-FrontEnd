@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import Additem from '../assets/Additem.svg'
 import axios from 'axios';
-
+import { toast } from "react-toastify";
 import { LoginDetails } from '../contex/Logincontex';
 
 const MediatorForm = () => {
@@ -41,7 +41,10 @@ const MediatorForm = () => {
             formData,
             memail: loginuser?.memail
         });
-        alert(data?.data?.message);
+        toast.success(data?.data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        // alert();
         if(data?.status===200){
             setFormData({
                 uage: '',

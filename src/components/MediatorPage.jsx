@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { LoginDetails } from '../contex/Logincontex';
 import RequestCard from './RequestCard';
-
+import { toast } from 'react-toastify';
 import axios from 'axios'
 
 const MediatorPage = () => {
@@ -15,7 +15,9 @@ const MediatorPage = () => {
             memail: mediator?.memail, 
             resid
         });
-        alert(data?.data?.message);
+        toast.success(data?.data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
     }
 
     return (
