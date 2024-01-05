@@ -24,26 +24,26 @@ const DashboardChart = ({ charttype }) => {
     console.log("Data ", d);
     setLoading(false);
   };
-  let burger = 0 , pizza = 0;
+  let burger = 0, pizza = 0;
   const length = 12; // Set the desired length of the array
   const totalOrders = new Array(length).fill(0);
-    for (let i = 0; i < morder?.length; i++) {
-      var type = morder[i].type; 
-      console.log('Type ', type)
-      if( type === "pizza" ){
-        pizza++;
-      }
-      else{
-        burger++;
-      }
-      console.log('Pizza & Burger ', pizza , burger);
-      let m = parseInt(morder[i].month , 10 );
-      if (m >= 1 && m <= 12) {
-        console.log('m value ' , m)
-        totalOrders[m-1]++;
-      }
+  for (let i = 0; i < morder?.length; i++) {
+    var type = morder[i].type;
+    console.log('Type ', type)
+    if (type === "pizza") {
+      pizza++;
     }
-    console.log('Total Orders ' , totalOrders);
+    else {
+      burger++;
+    }
+    console.log('Pizza & Burger ', pizza, burger);
+    let m = parseInt(morder[i].month, 10);
+    if (m >= 1 && m <= 12) {
+      console.log('m value ', m)
+      totalOrders[m - 1]++;
+    }
+  }
+  console.log('Total Orders ', totalOrders);
   // const ageData = morder?.map((entry) => parseInt(entry.uage, 10));
   // const monthData = morder?.map((entry) => entry.month);
   // Chart data
@@ -113,19 +113,23 @@ const DashboardChart = ({ charttype }) => {
     <div className="mx-auto w-3/4">
       {charttype === "Line" ? (
         <div className="flex items-center justify-center gap-x-10 flex-row h-1/4 w-full">
-          <div className="w-1/2 flex justify-center py-6 items-center h-[400px] bg-slate-200">
+          <div className="w-1/2 flex justify-center py-6 items-center h-[400px] bg-slate-50 p-4">
             <Line
               data={chartData}
               options={options}
               className="w-5/6 h-[200px]"
             />
           </div>
-          <div className="w-1/2">DESCRIPTIOON</div>
+          <div className="w-1/2 flex items-center justify-center">
+            <div className=" font-bold text-xl text-red-400">Monthwise Orders</div>
+          </div>
         </div>
       ) : (
         <div className="flex items-center justify-center gap-x-10 flex-row h-1/4 w-full">
-          <div className="w-1/2">DESCRIPTIOON</div>
-          <div className="w-1/2 flex justify-center py-6 items-center h-[400px] bg-slate-200">
+          <div className="w-1/2 flex items-center justify-center">
+            <div className=" font-bold text-xl text-red-400">Items</div>
+          </div>
+          <div className="w-1/2 flex justify-center py-6 items-center h-[400px] bg-slate-50 p-4">
             <Doughnut data={doughnutState} className="w-5/6 h-[100px]" />
           </div>
         </div>
